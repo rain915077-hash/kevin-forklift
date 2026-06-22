@@ -1,750 +1,290 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
+<!doctype html>
+<html lang="zh-Hant-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="assets/favicon.ico" sizes="any">
-  <link rel="shortcut icon" href="assets/favicon.ico">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <title>凱文堆高機配對站｜中古堆高機買賣・現場試車</title>
-  <meta name="description" content="凱文堆高機配對站，專營中古堆高機買賣、現場試車、專業配對。提供電動立式堆高機、電動座式堆高機、汽柴油堆高機。" />
-  <style>
-    :root{
-      --orange:#ff5b00;
-      --orange2:#ff8d25;
-      --dark:#10161d;
-      --dark2:#1f2933;
-      --gray:#64707b;
-      --line:#dce3e8;
-      --white:#fff;
-      --light:#f5f6f8;
-      --shadow:0 18px 42px rgba(0,0,0,.10);
-      --radius:24px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif;
-      color:var(--dark);
-      background:var(--light);
-      line-height:1.65;
-    }
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-    .wrap{width:min(1180px,calc(100% - 36px));margin:0 auto}
-
-    .topbar{
-      background:#0b1117;color:#ebf1f5;border-bottom:3px solid var(--orange);font-size:14px;
-    }
-    .topbar .wrap{
-      display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;padding:10px 0;
-    }
-    .topbar .phone{font-weight:950}
-    .topbar .phone span{color:var(--orange)}
-
-    header{
-      position:sticky;top:0;z-index:50;
-      background:rgba(255,255,255,.96);backdrop-filter:blur(10px);
-      box-shadow:0 8px 24px rgba(0,0,0,.07);
-    }
-    .nav{
-      height:106px;display:flex;align-items:center;justify-content:space-between;gap:26px;
-    }
-    .brand{display:flex;align-items:center;gap:14px;min-width:0}
-    .brand img{height:68px;width:auto;object-fit:contain}
-    nav.menu{
-      display:flex;align-items:center;gap:28px;font-size:18px;font-weight:950;color:#1d2731;
-    }
-    nav.menu a:not(.btn):hover{color:var(--orange)}
-
-    .social-links{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin-left:2px;
-    }
-    .social-icon{
-      width:50px;
-      height:50px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background:#111820;
-      color:#fff;
-      border:2px solid rgba(255,91,0,.35);
-      box-shadow:0 10px 22px rgba(0,0,0,.10);
-      transition:.22s;
-    }
-    .social-icon:hover{
-      transform:translateY(-2px);
-      border-color:var(--orange);
-      box-shadow:0 14px 28px rgba(255,91,0,.22);
-    }
-    .social-icon svg{
-      width:26px;
-      height:26px;
-      display:block;
-      fill:currentColor;
-    }
-    .social-icon.fb{
-      background:#1877f2;
-      border-color:#1877f2;
-    }
-    .social-icon.tiktok{
-      background:#000;
-      border-color:#000;
-    }
-    .social-icon.line{
-      background:#06c755;
-      border-color:#06c755;
-    }
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      min-height:48px;padding:0 22px;border-radius:999px;border:0;cursor:pointer;
-      font-weight:950;transition:.22s;white-space:nowrap;
-    }
-    .btn:hover{transform:translateY(-2px)}
-    .btn-orange{
-      color:#fff;background:linear-gradient(135deg,var(--orange),var(--orange2));
-      box-shadow:0 14px 28px rgba(255,91,0,.28);
-    }
-    .btn-dark{background:var(--dark);color:#fff}
-    .btn-outline-dark{background:transparent;border:2px solid var(--dark);color:var(--dark)}
-
-    .hero{
-      background:
-        linear-gradient(135deg,#ffffff 0%,#f7f8fa 60%,#eef2f5 100%);
-      position:relative;overflow:hidden;
-    }
-    .hero:before{
-      content:"";
-      position:absolute;right:-140px;top:-140px;
-      width:420px;height:420px;border-radius:50%;
-      background:rgba(255,91,0,.08);
-    }
-    .hero:after{
-      content:"";
-      position:absolute;left:-100px;bottom:-120px;
-      width:420px;height:220px;
-      background:linear-gradient(135deg,#111821 0%,#111821 60%,var(--orange) 61%,var(--orange) 69%,transparent 70%);
-      transform:skewX(-18deg);
-      opacity:.96;
-    }
-    .hero-inner{
-      position:relative;z-index:1;
-      min-height:470px;
-      display:grid;grid-template-columns:1.08fr .92fr;
-      gap:36px;align-items:center;
-      padding:64px 0 70px;
-    }
-    .hero-copy .eyebrow{
-      display:inline-flex;align-items:center;
-      background:linear-gradient(135deg,var(--orange),var(--orange2));
-      color:#fff;padding:8px 16px;font-weight:1000;letter-spacing:.1em;
-      transform:skewX(-12deg);box-shadow:9px 9px 0 rgba(0,0,0,.15);margin-bottom:24px;
-    }
-    .hero-copy .eyebrow span{display:inline-block;transform:skewX(12deg)}
-    h1{
-      margin:0 0 16px;font-size:clamp(42px,6vw,76px);line-height:1.05;letter-spacing:-.04em;
-    }
-    h1 b{color:var(--orange)}
-    .lead{
-      margin:0 0 28px;color:#55616c;font-size:20px;font-weight:700;max-width:620px;
-    }
-    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:30px}
-    .stats{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:700px;
-    }
-    .stat{
-      background:#fff;border:1px solid var(--line);padding:18px;border-radius:22px;
-      box-shadow:0 12px 28px rgba(0,0,0,.06);
-    }
-    .stat strong{
-      display:block;font-size:30px;line-height:1;color:var(--dark);margin-bottom:6px;
-    }
-    .stat span{color:#5e6974;font-weight:850}
-    .hero-visual{
-      background:#fff;border:1px solid var(--line);border-radius:30px;padding:18px;
-      box-shadow:var(--shadow);
-    }
-    .hero-visual img{width:100%;height:auto;border-radius:22px}
-    .hero-visual .caption{
-      margin-top:14px;padding:16px 18px;border-radius:18px;background:#10161d;color:#fff;
-      display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center;
-    }
-    .hero-visual .caption strong{font-size:18px}
-    .hero-visual .caption span{color:#d7dee4;font-weight:800}
-
-    .banner-section{
-      padding:0 0 24px;
-      background:linear-gradient(180deg,#f5f6f8 0%,#f5f6f8 60%,#ffffff 100%);
-    }
-    .banner-card{
-      background:#fff;border-radius:28px;padding:16px;border:1px solid var(--line);
-      box-shadow:var(--shadow);
-    }
-    .banner-card img{width:100%;height:auto;border-radius:18px}
-
-    .section{padding:88px 0}
-    .section-head{
-      display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:34px;
-    }
-    .kicker{
-      display:inline-block;color:var(--orange);font-weight:1000;letter-spacing:.12em;margin-bottom:8px;
-    }
-    h2{
-      margin:0;font-size:clamp(31px,4vw,50px);line-height:1.15;letter-spacing:-.04em;
-    }
-    .section-head p{margin:0;max-width:540px;color:var(--gray);font-weight:700}
-
-    .services{
-      display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
-    }
-    .services-three{grid-template-columns:repeat(3,1fr)}
-    .service-card{
-      background:#fff;border:1px solid var(--line);border-bottom:5px solid var(--orange);
-      border-radius:var(--radius);padding:26px 22px;box-shadow:0 12px 28px rgba(0,0,0,.06);
-      position:relative;overflow:hidden;
-    }
-    .service-card:before{
-      content:"";position:absolute;right:-28px;top:-28px;width:96px;height:96px;border-radius:50%;
-      background:rgba(255,91,0,.10);
-    }
-    .icon{
-      width:58px;height:58px;border-radius:18px;display:grid;place-items:center;
-      background:linear-gradient(135deg,var(--dark),#39434d);border:2px solid var(--orange);
-      color:#fff;font-size:28px;position:relative;z-index:1;margin-bottom:18px;
-    }
-    .service-card h3{margin:0 0 8px;font-size:22px}
-    .service-card p{margin:0;color:var(--gray);font-weight:650}
-
-    .types-grid{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
-    }
-    .type-card{
-      background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;
-      box-shadow:0 12px 30px rgba(0,0,0,.08);
-    }
-    .type-photo{
-      height:300px;overflow:hidden;border-bottom:4px solid var(--orange);background:#edf1f4;
-    }
-    .type-photo img{width:100%;height:100%;object-fit:cover}
-    .type-photo.product-white{background:#fff;padding:18px}
-    .type-photo.product-white img{object-fit:contain}
-    .type-body{padding:22px}
-    .type-label{
-      display:inline-block;background:#fff0e6;color:#b64200;border:1px solid #ffd3bb;
-      padding:5px 11px;border-radius:999px;font-size:13px;font-weight:950;margin-bottom:10px;
-    }
-    .type-body h3{margin:0 0 8px;font-size:24px}
-    .type-body p{margin:0 0 14px;color:var(--gray);font-weight:700}
-    .bullets{display:grid;gap:8px;color:#4f5a66;font-size:14px;font-weight:800}
-    .bullets span:before{content:"▸";color:var(--orange);font-weight:1000;margin-right:6px}
-
-    .black{
-      background:
-        linear-gradient(135deg,rgba(10,15,21,.98),rgba(28,36,45,.96)),
-        repeating-linear-gradient(135deg,#1c232c 0,#1c232c 12px,#121920 12px,#121920 24px);
-      color:#fff;position:relative;overflow:hidden;
-    }
-    .black:before{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(105deg,transparent 0 55%, rgba(255,91,0,.14) 55% 70%, transparent 70%);
-    }
-    .black .wrap{position:relative;z-index:1}
-    .black .section-head p{color:#cbd3da}
-    .flow{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
-    }
-    .step{
-      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
-      border-radius:26px;padding:28px;
-    }
-    .num{
-      width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--orange);
-      color:#fff;font-size:22px;font-weight:1000;margin-bottom:18px;box-shadow:0 10px 22px rgba(255,91,0,.30);
-    }
-    .step h3{margin:0 0 8px;font-size:24px}
-    .step p{margin:0 0 16px;color:#d6dde3;font-weight:700}
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{
-      background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.15);
-      color:#fff;border-radius:999px;padding:7px 11px;font-size:14px;font-weight:900;
-    }
-    .flow-action{
-      margin-top:26px;display:flex;justify-content:center;
-    }
-
-    .about{
-      display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;
-    }
-    .about-card{
-      background:#fff;border:1px solid var(--line);border-radius:30px;padding:34px;box-shadow:var(--shadow);
-    }
-    .about-card p{margin:16px 0 0;color:var(--gray);font-weight:700}
-    .checks{display:grid;gap:13px;margin-top:22px}
-    .check{display:flex;gap:12px;align-items:flex-start;font-weight:900;color:#27313b}
-    .check b{
-      flex:0 0 24px;height:24px;border-radius:50%;display:grid;place-items:center;
-      background:var(--orange);color:#fff;font-size:14px;
-    }
-    .about-visual{
-      background:#fff;border:1px solid var(--line);border-radius:30px;padding:24px;box-shadow:var(--shadow);
-    }
-    .about-visual img{width:100%;height:auto;border-radius:20px}
-
-    .contact-grid{
-      display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;
-    }
-    .contact-card,.action-card{
-      background:#fff;border:1px solid var(--line);border-radius:28px;padding:32px;box-shadow:0 12px 30px rgba(0,0,0,.08);
-    }
-    .contact-item{padding:17px 0;border-bottom:1px solid var(--line)}
-    .contact-item:last-child{border:0}
-    .contact-item small{display:block;color:#73808a;font-weight:950;margin-bottom:4px}
-    .contact-item strong{font-size:20px;color:#17202a}
-    .action-boxes{
-      display:grid;gap:18px;
-    }
-    .phone-box{
-      display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
-      border:1px solid var(--line);background:#fafbfc;border-radius:22px;padding:22px;
-    }
-    .phone-box h3,.line-box h3{margin:0 0 6px;font-size:24px}
-    .phone-box p,.line-box p{margin:0;color:var(--gray);font-weight:700}
-    .phone-box .btn{min-width:220px}
-    .line-box{
-      border:1px solid var(--line);background:#fafbfc;border-radius:22px;padding:22px;
-      display:grid;grid-template-columns:160px 1fr;gap:20px;align-items:center;
-    }
-    .line-box .qr-wrap{
-      background:#fff;border-radius:18px;padding:10px;border:1px solid var(--line);box-shadow:0 8px 18px rgba(0,0,0,.06);
-    }
-    .line-box .qr-wrap img{width:100%;height:auto;border-radius:10px}
-    .line-box .btn{margin-top:14px}
-
-    footer{
-      background:#0b1117;color:#d4dce2;padding:38px 0;border-top:5px solid var(--orange);
-    }
-    .footer{
-      display:grid;grid-template-columns:1.05fr .95fr .95fr;gap:26px;
-    }
-    .foot-logo img{height:76px;width:auto;object-fit:contain}
-    footer h3{margin:0 0 10px;color:#fff}
-    footer p,footer a{margin:0;color:#c7d0d6;font-weight:700}
-
-    .floating{
-      display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:80;gap:10px;
-    }
-    .floating a{
-      flex:1;min-height:52px;border-radius:16px;display:grid;place-items:center;
-      font-weight:1000;color:#fff;box-shadow:0 12px 28px rgba(0,0,0,.22);
-    }
-    .floating a:first-child{background:var(--dark)}
-    .floating a:last-child{background:var(--orange)}
-
-    @media(max-width:1080px){
-      .services,.services-three{grid-template-columns:repeat(2,1fr)}
-      .types-grid{grid-template-columns:repeat(2,1fr)}
-    }
-    @media(max-width:900px){
-      nav.menu{display:none}
-      .nav{height:86px}
-      .hero-inner,.about,.contact-grid,.footer{grid-template-columns:1fr}
-      .section-head{display:block}
-      .section-head p{margin-top:12px}
-      .flow{grid-template-columns:1fr}
-      .line-box{grid-template-columns:1fr}
-      .line-box .qr-wrap{max-width:220px}
-      .floating{display:flex}
-      body{padding-bottom:76px}
-    }
-    @media(max-width:620px){
-      .wrap{width:min(100% - 28px,1180px)}
-      .topbar .wrap{justify-content:center;text-align:center}
-      .brand img{height:48px}
-      .lead{font-size:17px}
-      .stats,.services,.services-three,.types-grid{grid-template-columns:1fr}
-      .section{padding:64px 0}
-      .type-photo{height:250px}
-      .about-card,.about-visual,.contact-card,.action-card,.banner-card{padding:24px;border-radius:24px}
-      .hero-inner{padding:54px 0 60px}
-      .hero-visual .caption{display:block}
-      .foot-logo img{height:62px}
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="凱文堆高機配對站，台中豐原中古堆高機買賣、租賃租購、維修保養與現場試車。200多台常備庫存，專人幫你配對最適合的堆高機。" />
+  <meta name="theme-color" content="#ff4d00" />
+  <title>凱文堆高機配對站｜中古堆高機買賣・租賃・維修保養</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="topbar">
-    <div class="wrap">
-      <div>中古堆高機買賣｜現場試車｜專業配對｜台中豐原</div>
-      <div class="phone">預約試車：<a href="tel:0909583066"><span>0909-583-066</span></a></div>
-    </div>
-  </div>
+  <a class="skip-link" href="#main">跳到主要內容</a>
 
-  <header>
-    <div class="wrap nav">
-      <a class="brand" href="#">
-        <img src="assets/logo-long.png" alt="凱文堆高機配對站">
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="凱文堆高機配對站首頁">
+        <img src="assets/logo-wide-transparent.png" alt="凱文堆高機配對站 Kevin Forklift Matching Station" />
       </a>
-      <nav class="menu">
-        <a href="#service">服務項目</a>
-        <a href="#types">堆高機類型</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="主選單">
         <a href="#match">配對流程</a>
-        <a href="#about">關於我們</a>
-        <a href="#contact">聯絡我們</a>
-        <div class="social-links">
-          <a class="social-icon fb" href="https://www.facebook.com/tedson583066" target="_blank" rel="noopener" aria-label="Facebook 粉專">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M14.4 8.4V6.7c0-.8.2-1.3 1.4-1.3h1.7V2.2C16.7 2.1 15.9 2 14.8 2c-2.6 0-4.4 1.6-4.4 4.5v1.9H7.5V12h2.9v10h3.8V12h3.1l.5-3.6h-3.4z"/>
-            </svg>
-          </a>
-          <a class="social-icon tiktok" href="https://www.tiktok.com/@tedson0909583066" target="_blank" rel="noopener" aria-label="TikTok">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M15.7 2c.4 2.7 1.9 4.4 4.6 4.6v3.4c-1.6.1-3-.4-4.5-1.3v6.5c0 4.1-2.9 6.8-6.7 6.8-3.3 0-6-2.4-6-5.8 0-4 3.8-6.8 7.7-5.9v3.6c-1.8-.6-3.9.6-3.9 2.5 0 1.3 1 2.3 2.3 2.3 1.6 0 2.7-1 2.7-3V2h3.8z"/>
-            </svg>
-          </a>
-          <a class="social-icon line" href="https://line.me/ti/p/PoeLJPtApc" target="_blank" rel="noopener" aria-label="LINE">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 3C6.5 3 2 6.6 2 11c0 3.8 3.4 7 8 7.8.3.1.6.2.6.5 0 .2 0 .5-.1.8l-.1.6c0 .2-.1.9.8.5.9-.4 4.9-2.9 6.7-5 1.2-1.3 2.1-3.1 2.1-5.2 0-4.4-4.5-8-10-8zm-3.6 9.8H6.6c-.3 0-.5-.2-.5-.5V8.7c0-.3.2-.5.5-.5s.5.2.5.5v3.1h1.3c.3 0 .5.2.5.5s-.2.5-.5.5zm2 0c-.3 0-.5-.2-.5-.5V8.7c0-.3.2-.5.5-.5s.5.2.5.5v3.6c0 .3-.2.5-.5.5zm4.2 0c-.2 0-.3-.1-.4-.2l-1.7-2.3v2c0 .3-.2.5-.5.5s-.5-.2-.5-.5V8.7c0-.2.1-.4.3-.5.2-.1.4 0 .6.2l1.7 2.3v-2c0-.3.2-.5.5-.5s.5.2.5.5v3.6c0 .2-.1.4-.3.5h-.2zm3.7-2.3c.3 0 .5.2.5.5s-.2.5-.5.5h-1.3v.4h1.3c.3 0 .5.2.5.5s-.2.5-.5.5h-1.8c-.3 0-.5-.2-.5-.5V8.7c0-.3.2-.5.5-.5h1.8c.3 0 .5.2.5.5s-.2.5-.5.5h-1.3v.4h1.3z"/>
-            </svg>
-          </a>
-        </div>
+        <a href="#stock">經營項目</a>
+        <a href="#service">服務項目</a>
+        <a href="#gallery">廠區實景</a>
+        <a href="#contact" class="nav-cta">預約試車</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="wrap hero-inner">
-        <div class="hero-copy">
-          <div class="eyebrow"><span>KEVIN FORKLIFT MATCHING STATION</span></div>
-          <h1>幫你配對<br><b>最適合</b>的堆高機</h1>
-          <p class="lead">依照你的貨重、作業空間、工作需求與採購預算，快速幫你配對真正適合的中古堆高機。</p>
+  <main id="main">
+    <section class="hero" aria-label="首頁主視覺">
+      <div class="hero-bg" role="img" aria-label="凱文堆高機配對站戶外展示場與大量堆高機庫存"></div>
+      <div class="hero-overlay"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">TAICHUNG FORKLIFT MATCHING</p>
+          <h1>找堆高機，<br><span>不用猜。</span></h1>
+          <p class="lead">從車型、貨重、預算到使用場景，凱文幫你快速配對適合的中古堆高機。現場看車、試車、交車一次安排。</p>
           <div class="hero-actions">
-            <a class="btn btn-orange" href="tel:0909583066">電話預約試車</a>
-            <a class="btn btn-dark" href="https://forms.gle/81Teg9BW7Gog6o227" target="_blank" rel="noopener">填寫配對需求</a>
+            <a class="btn btn-primary" href="tel:0909583066">立即預約試車</a>
+            <a class="btn btn-ghost" href="#match">開始配對</a>
           </div>
-          <div class="stats">
-            <div class="stat"><strong>200+</strong><span>台常備庫存</span></div>
-            <div class="stat"><strong>1000坪</strong><span>現場看車試車</span></div>
-            <div class="stat"><strong>3大類</strong><span>熱門車型可選</span></div>
+          <div class="hero-note">
+            <span>200+ 常備庫存</span>
+            <span>千坪廠房</span>
+            <span>專業配對</span>
           </div>
         </div>
 
-        <div class="hero-visual">
-          <img src="assets/logo-circle.png" alt="凱文堆高機配對站 logo">
-          <div class="caption">
-            <div>
-              <strong>中古堆高機買賣｜現場試車｜專業配對</strong><br>
-              <span>凱文堆高機配對站</span>
+        <aside class="hero-card reveal" aria-label="快速聯絡資訊">
+          <img src="assets/logo-round-transparent.png" alt="凱文堆高機配對站圓形標誌" />
+          <h2>凱文堆高機配對站</h2>
+          <p>中古堆高機買賣｜租賃租購｜維修保養</p>
+          <a href="tel:0909583066" class="call-link">0909-583-066</a>
+          <small>台中市豐原區三豐路二段375巷20號</small>
+          <div class="hero-card-mini-actions">
+            <a class="mini-link" href="#match">快速配對</a>
+            <a class="mini-link" target="_blank" rel="noreferrer" href="https://line.me/ti/p/PoeLJPtApc">加入 LINE</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="stats-strip" aria-label="服務優勢">
+      <div class="container stats-grid">
+        <div class="stat-item reveal"><strong>200+</strong><span>常備庫存</span></div>
+        <div class="stat-item reveal"><strong>1000坪+</strong><span>實體廠區</span></div>
+        <div class="stat-item reveal"><strong>3步驟</strong><span>快速配對</span></div>
+        <div class="stat-item reveal"><strong>1站式</strong><span>買賣租修</span></div>
+      </div>
+    </section>
+
+    <section class="section match-section" id="match">
+      <div class="container">
+        <div class="match-combined reveal">
+          <p class="eyebrow">MATCHING SYSTEM</p>
+          <h2>三步驟，配出你的堆高機</h2>
+          <p class="match-lead">把需求整理清楚，再交給凱文快速篩選適合的車款，讓看車更有效率。</p>
+
+          <div class="match-flow compact-flow" aria-label="三步驟配對流程">
+            <div class="flow-item">
+              <span class="flow-no">STEP 1</span>
+              <strong>選擇樣式</strong>
             </div>
-            <a class="btn btn-orange" href="#types">看三種車型</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="banner-section">
-      <div class="wrap">
-        <div class="banner-card">
-          <img src="assets/banner.png" alt="凱文堆高機配對站 banner">
-        </div>
-      </div>
-    </section>
-
-    <section id="service" class="section">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="kicker">SERVICE</span>
-            <h2>一站式中古堆高機服務</h2>
-          </div>
-        </div>
-
-        <div class="services services-three">
-          <article class="service-card">
-            <div class="icon">🚜</div>
-            <h3>全新/中古堆高機買賣</h3>
-            <p>依照預算、噸數、揚高與使用場地，提供合適的新車與中古堆高機選擇。</p>
-          </article>
-          <article class="service-card">
-            <div class="icon">📄</div>
-            <h3>租賃/租購堆高機方案</h3>
-            <p>短期使用、長期租賃或租購規劃，協助企業降低一次性採購壓力。</p>
-          </article>
-          <article class="service-card">
-            <div class="icon">🧰</div>
-            <h3>維修/保養/更換配備</h3>
-            <p>提供保養、檢修、零件耗材、電池、輪胎、牙叉與常見配備更換服務。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="types" class="section">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="kicker">FORKLIFT TYPES</span>
-            <h2>日本外匯堆高機，任你挑選</h2>
-          </div>
-        </div>
-
-        <div class="types-grid">
-          <article class="type-card">
-            <div class="type-photo">
-              <img src="assets/forklift-standup.jpg" alt="電動立式堆高機">
+            <div class="flow-arrow" aria-hidden="true">→</div>
+            <div class="flow-item">
+              <span class="flow-no">STEP 2</span>
+              <strong>選擇載重</strong>
             </div>
-            <div class="type-body">
-              <span class="type-label">熱門類型 01</span>
+            <div class="flow-arrow" aria-hidden="true">→</div>
+            <div class="flow-item">
+              <span class="flow-no">STEP 3</span>
+              <strong>選擇預算</strong>
+            </div>
+          </div>
+
+          <div class="match-actions-simple">
+            <a class="btn btn-primary" target="_blank" rel="noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLScHOrUdn_NLqfzPcBxr_TuT9g3MRUAOqznCMq437G1uM6Z_eg/viewform">前往需求表單</a>
+            <a class="btn btn-dark" href="tel:0909583066">直接來電 0909-583-066</a>
+            <a class="btn btn-line" target="_blank" rel="noreferrer" href="https://line.me/ti/p/PoeLJPtApc">LINE 線上洽詢</a>
+          </div>
+          <div class="match-result static-note">填完表單後，我們會依照你的需求協助安排適合的看車方向。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section stock-section" id="stock">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">STOCK SHOWCASE</p>
+          <h2>日本外匯堆高機，任你挑選</h2>
+          <p>依照你的貨重、空間、預算與使用頻率，從常備庫存中挑出更適合的車。</p>
+        </div>
+        <div class="stock-grid">
+          <article class="stock-card reveal">
+            <img src="assets/standing-toyota.jpg" alt="TOYOTA 電動立式堆高機實車照片" />
+            <div class="card-body">
+              <span class="tag">窄道首選</span>
               <h3>電動立式堆高機</h3>
-              <p>適合倉儲、窄巷道、貨櫃進出與室內高頻率作業。</p>
-              <div class="bullets">
-                <span>狹窄空間操作靈活</span>
-                <span>倉儲堆疊效率高</span>
-                <span>室內搬運好幫手</span>
-              </div>
+              <p>適合倉儲、物流、窄道動線與棧板進出頻繁的環境。</p>
             </div>
           </article>
-
-          <article class="type-card">
-            <div class="type-photo">
-              <img src="assets/forklift-seated.jpg" alt="電動座式堆高機">
-            </div>
-            <div class="type-body">
-              <span class="type-label">熱門類型 02</span>
+          <article class="stock-card reveal">
+            <img src="assets/seated-electric.jpg" alt="TOYOTA 電動座式堆高機實車照片" />
+            <div class="card-body">
+              <span class="tag">室內作業</span>
               <h3>電動座式堆高機</h3>
-              <p>適合較長時間搬運作業，兼顧舒適性與穩定效率。</p>
-              <div class="bullets">
-                <span>坐姿操作更舒適</span>
-                <span>作業效率與穩定兼具</span>
-                <span>室內外皆有適用情境</span>
-              </div>
+              <p>低噪音、低排放，適合工廠、倉庫與室內搬運作業。</p>
             </div>
           </article>
-
-          <article class="type-card">
-            <div class="type-photo">
-              <img src="assets/forklift-fuel.jpg" alt="汽柴油堆高機">
-            </div>
-            <div class="type-body">
-              <span class="type-label">熱門類型 03</span>
-              <h3>汽柴油堆高機</h3>
-              <p>適合戶外重貨搬運、大噸數作業與高強度使用需求。</p>
-              <div class="bullets">
-                <span>大噸數搬運更有力</span>
-                <span>戶外場地適應度高</span>
-                <span>裝卸重貨穩定耐用</span>
-              </div>
+          <article class="stock-card reveal">
+            <img src="assets/diesel-50.jpg" alt="戶外大型柴油座式堆高機" />
+            <div class="card-body">
+              <span class="tag">重貨搬運</span>
+              <h3>柴油／汽油座式</h3>
+              <p>載重範圍廣、動力強，適合戶外、重貨與長時間搬運。</p>
             </div>
           </article>
-
-          <article class="type-card">
-            <div class="type-photo product-white">
-              <img src="assets/self-propelled-stacker.jpg" alt="自走式堆高機">
-            </div>
-            <div class="type-body">
-              <span class="type-label">產品項目 01</span>
-              <h3>自走式堆高機</h3>
-              <p>適合倉庫、工廠與門市後場使用，輕巧省力，提升搬運與堆疊效率。</p>
-              <div class="bullets">
-                <span>免推行更省力</span>
-                <span>適合輕中型貨物堆疊</span>
-                <span>倉儲搬運靈活方便</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="type-card">
-            <div class="type-photo product-white">
-              <img src="assets/hydraulic-pallet-truck.png" alt="油壓式拖板車">
-            </div>
-            <div class="type-body">
-              <span class="type-label">產品項目 02</span>
-              <h3>油壓式拖板車</h3>
-              <p>棧板短距離搬運基本配備，操作簡單，適合各種倉儲與工廠現場。</p>
-              <div class="bullets">
-                <span>短距離搬運好上手</span>
-                <span>倉庫棧板移動必備</span>
-                <span>維護簡單成本低</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="type-card">
-            <div class="type-photo product-white">
-              <img src="assets/warehouse-equipment.png" alt="倉儲設備">
-            </div>
-            <div class="type-body">
-              <span class="type-label">產品項目 03</span>
-              <h3>倉儲設備</h3>
-              <p>提供倉儲搬運、堆疊與輔助作業設備，讓現場動線更順暢。</p>
-              <div class="bullets">
-                <span>輔助搬運更有效率</span>
-                <span>適合倉庫與工廠現場</span>
-                <span>依需求搭配設備</span>
-              </div>
+          <article class="stock-card reveal stock-card-light">
+            <img src="assets/special-warehouse.png" alt="油壓拖板車與倉儲設備示意照片" />
+            <div class="card-body">
+              <span class="tag">特殊需求</span>
+              <h3>特殊屬具／倉儲設備</h3>
+              <p>油壓拖板車、自走式、倉儲設備與特殊屬具，可依現場情境協助搭配。</p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="match" class="section black">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="kicker">MATCHING FLOW</span>
-            <h2>三步驟，快速配對堆高機</h2>
+    <section class="section service-section" id="service">
+      <div class="container service-layout">
+        <div class="service-media reveal">
+          <img src="assets/service-bay.jpg" alt="堆高機維修保養廠區實景" />
+        </div>
+        <div class="service-content reveal">
+          <p class="eyebrow">ONE-STOP SERVICE</p>
+          <h2>一站式中古堆高機服務</h2>
+          <div class="service-list">
+            <article>
+              <span>01</span>
+              <h3>全新／中古堆高機買賣</h3>
+              <p>依照工作條件與預算，推薦現場可看、可試的車款。</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>租賃／租購堆高機方案</h3>
+              <p>短期工程、旺季備車、先用後買，都能討論更彈性的方案。</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>維修／保養／更換配備</h3>
+              <p>從定保、電池、輪胎、油壓到屬具更換，協助維持車況。</p>
+            </article>
           </div>
-        </div>
-
-        <div class="flow">
-          <article class="step">
-            <div class="num">1</div>
-            <h3>選擇樣式</h3>
-            <p>先依場地動線與作業習慣，決定大方向車型。</p>
-            <div class="chips">
-              <span class="chip">電動立式</span>
-              <span class="chip">電動座式</span>
-              <span class="chip">柴油-手排</span>
-              <span class="chip">柴油-自排</span>
-              <span class="chip">汽油-手排</span>
-              <span class="chip">汽油-自排</span>
-            </div>
-          </article>
-
-          <article class="step">
-            <div class="num">2</div>
-            <h3>選擇貨重</h3>
-            <p>依照平常搬運的貨物重量，挑選安全載重範圍。</p>
-            <div class="chips">
-              <span class="chip">1噸以下</span>
-              <span class="chip">1.1~1.5噸</span>
-              <span class="chip">1.6~2.0噸</span>
-              <span class="chip">2.1~3噸</span>
-              <span class="chip">3噸以上</span>
-            </div>
-          </article>
-
-          <article class="step">
-            <div class="num">3</div>
-            <h3>選擇預算</h3>
-            <p>先用預算做初步篩選，提升配對效率。</p>
-            <div class="chips">
-              <span class="chip">30萬以下</span>
-              <span class="chip">31~40萬</span>
-              <span class="chip">41~50萬</span>
-              <span class="chip">50萬以上</span>
-            </div>
-          </article>
-        </div>
-
-        <div class="flow-action">
-          <a class="btn btn-orange" href="https://forms.gle/81Teg9BW7Gog6o227" target="_blank" rel="noopener">立即填寫配對需求表單</a>
         </div>
       </div>
     </section>
 
-    <section id="about" class="section">
-      <div class="wrap about">
-        <div class="about-card">
-          <span class="kicker">ABOUT KEVIN</span>
-          <h2>不是只賣車，<br>是幫你買對車。</h2>
-          <p>很多客戶不知道自己適合哪一種堆高機，所以我們把選車邏輯整理成簡單流程，搭配現場看車與試車，讓中古堆高機的挑選變得更直覺。</p>
-          <div class="checks">
-            <div class="check"><b>✓</b><span>200台常備庫存，選擇更多</span></div>
-            <div class="check"><b>✓</b><span>千坪廠房，現場看車更直接</span></div>
-            <div class="check"><b>✓</b><span>依需求配對，不亂推不適合車款</span></div>
-            <div class="check"><b>✓</b><span>主打中古堆高機買賣與現場試車</span></div>
-          </div>
+    <section class="section promise-section">
+      <div class="container promise-grid">
+        <div class="promise-card reveal">
+          <div class="icon">✓</div>
+          <h3>先試再決定</h3>
+          <p>現場看車、試車，實際感受車況與操作手感。</p>
         </div>
-
-        <div class="about-visual">
-          <img src="assets/logo-circle.png" alt="凱文堆高機配對站圓形 logo">
+        <div class="promise-card reveal">
+          <div class="icon">↔</div>
+          <h3>依需求配對</h3>
+          <p>不是只賣庫存，而是依載重、揚高、空間幫你挑。</p>
+        </div>
+        <div class="promise-card reveal">
+          <div class="icon">🔧</div>
+          <h3>後續可維修</h3>
+          <p>買車後保養維修與配備更換，都能持續支援。</p>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="section">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <span class="kicker">CONTACT</span>
-            <h2>預約試車・聯絡我們</h2>
-          </div>
-          <p>你可以直接電話聯絡，或掃描 LINE QR code 加入 LINE 進一步詢問。</p>
+    <section class="section gallery-section" id="gallery">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">REAL FACTORY</p>
+          <h2>廠區與庫存實景</h2>
+          <p>實車、實廠、實際展示，歡迎來現場比較不同車型。</p>
         </div>
+        <div class="gallery-grid">
+          <figure class="gallery-large reveal"><img src="assets/hero-yard.jpg" alt="戶外堆高機展示場"><figcaption>戶外展示場</figcaption></figure>
+          <figure class="reveal"><img src="assets/inventory-row.jpg" alt="室內堆高機庫存排列"><figcaption>庫存排列</figcaption></figure>
+          <figure class="reveal"><img src="assets/showroom-electric.jpg" alt="電動堆高機展示區"><figcaption>電動車系</figcaption></figure>
+          <figure class="reveal"><img src="assets/service-bay.jpg" alt="維修保養工作區"><figcaption>維修保養</figcaption></figure>
+        </div>
+      </div>
+    </section>
 
-        <div class="contact-grid">
-          <div class="contact-card">
-            <div class="contact-item">
-              <small>聯絡電話</small>
-              <strong><a href="tel:0909583066">0909-583-066</a></strong>
+    <section class="section contact-section" id="contact">
+      <div class="container contact-card reveal">
+        <div>
+          <p class="eyebrow">BOOK A TEST DRIVE</p>
+          <h2>把需求交給凱文，現場幫你配對。</h2>
+          <p>來電先說明：車型、貨重、揚高、預算與使用場景，我們會先幫你整理可看的車款。</p>
+        </div>
+        <div class="contact-actions contact-actions-extended">
+          <a class="btn btn-primary" href="tel:0909583066">撥打 0909-583-066</a>
+          <a class="btn btn-dark" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=%E5%8F%B0%E4%B8%AD%E5%B8%82%E8%B1%90%E5%8E%9F%E5%8D%80%E4%B8%89%E8%B1%90%E8%B7%AF%E4%BA%8C%E6%AE%B5375%E5%B7%B720%E8%99%9F">查看地圖</a>
+          <a class="btn btn-line" target="_blank" rel="noreferrer" href="https://line.me/ti/p/PoeLJPtApc">加入 LINE</a>
+        </div>
+        <div class="social-icon-grid" aria-label="社群聯絡方式">
+          <a class="social-card social-line" target="_blank" rel="noreferrer" href="https://line.me/ti/p/PoeLJPtApc">
+            <div class="social-visual qr-visual">
+              <img src="assets/line-qr.jpg" alt="凱文堆高機配對站 LINE QR Code" />
             </div>
-            <div class="contact-item">
-              <small>看車地址</small>
-              <strong>台中市豐原區三豐路二段375巷20號</strong>
+            <div class="social-copy">
+              <h3>LINE QR Code</h3>
+              <p>掃描加入 LINE，快速洽詢</p>
             </div>
-            <div class="contact-item">
-              <small>品牌名稱</small>
-              <strong>凱文堆高機配對站</strong>
+          </a>
+          <a class="social-card social-tiktok" target="_blank" rel="noreferrer" href="https://www.tiktok.com/@tedson0909583066">
+            <div class="social-visual text-visual"><span class="icon-mark">♪</span></div>
+            <div class="social-copy">
+              <h3>TikTok</h3>
+              <p>@tedson0909583066</p>
             </div>
-            <div class="contact-item">
-              <small>服務內容</small>
-              <strong>中古堆高機買賣｜現場試車｜專業配對</strong>
+          </a>
+          <a class="social-card social-facebook" target="_blank" rel="noreferrer" href="https://www.facebook.com/tedson583066">
+            <div class="social-visual text-visual"><span class="icon-mark">f</span></div>
+            <div class="social-copy">
+              <h3>Facebook</h3>
+              <p>/tedson583066</p>
             </div>
-          </div>
-
-          <div class="action-card">
-            <div class="action-boxes">
-              <div class="phone-box">
-                <div>
-                  <h3>電話聯絡</h3>
-                  <p>直接來電最快，立即詢問車況、規格與試車安排。</p>
-                </div>
-                <a class="btn btn-orange" href="tel:0909583066">撥打 0909-583-066</a>
-              </div>
-
-              <div class="line-box">
-                <a class="qr-wrap" href="https://line.me/ti/p/PoeLJPtApc" target="_blank" rel="noopener">
-                  <img src="assets/line-qr.jpg" alt="LINE QR code">
-                </a>
-                <div>
-                  <h3>LINE 聯絡</h3>
-                  <p>點擊或掃描 QR code 加入 LINE，方便傳照片、詢問車款與討論需求。</p>
-                  <a class="btn btn-dark" href="https://line.me/ti/p/PoeLJPtApc" target="_blank" rel="noopener">加入 LINE 詢問</a>
-                </div>
-              </div>
-            </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap footer">
+  <footer class="site-footer">
+    <div class="container footer-grid">
       <div>
-        <div class="foot-logo"><img src="assets/logo-long.png" alt="凱文堆高機配對站"></div>
-        <p>幫你配對最適合的堆高機。提供中古堆高機買賣、現場試車與專業配對服務。</p>
-      </div>
-      <div>
-        <h3>快速連結</h3>
-        <p><a href="#service">服務項目</a>　<a href="#types">堆高機類型</a>　<a href="#match">配對流程</a></p>
+        <img class="footer-logo" src="assets/logo-wide-transparent.png" alt="凱文堆高機配對站" />
+        <p>中古堆高機買賣、租賃租購、維修保養、配備更換。</p>
       </div>
       <div>
         <h3>聯絡資訊</h3>
-        <p>0909-583-066<br>台中市豐原區三豐路二段375巷20號</p>
+        <p><a href="tel:0909583066">預約試車：0909-583-066</a></p>
+        <p>台中市豐原區三豐路二段375巷20號</p>
+        <p><a target="_blank" rel="noreferrer" href="https://line.me/ti/p/PoeLJPtApc">LINE 線上洽詢</a></p>
+      </div>
+      <div>
+        <h3>快速導覽</h3>
+        <p><a href="#match">三步驟配對</a></p>
+        <p><a href="#stock">經營項目</a></p>
+        <p><a href="#service">服務項目</a></p>
       </div>
     </div>
+    <div class="footer-bottom">© <span id="year"></span> Kevin Forklift Matching Station. All rights reserved.</div>
   </footer>
 
-  <div class="floating">
-    <a href="https://forms.gle/81Teg9BW7Gog6o227">立即配對</a>
-    <a href="https://line.me/ti/p/PoeLJPtApc" target="_blank" rel="noopener">LINE 聯絡</a>
+  <div class="mobile-cta" aria-label="手機快速聯絡">
+    <a href="tel:0909583066">立即來電</a>
+    <a target="_blank" rel="noreferrer" href="https://line.me/ti/p/PoeLJPtApc">LINE 洽詢</a>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
